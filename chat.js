@@ -52,19 +52,11 @@ class Chatroom {
     }
 }
 
-let chatroom = new Chatroom('general', 'yoshi')
-// chatroom.addChat('hi')
-// .then(() => console.log('chat added'))
-
-chatroom.getChats(function (data) {
-    console.log(data)
-})
-
-setTimeout(() => {
-chatroom.updateRoom('killing people')
-chatroom.updateUsername('binladin')
-chatroom.getChats(function(data) {
-    console.log(data)
-})
-chatroom.addChat('allahu akbar')
-},4000)
+// setTimeout(() => {
+// chatroom.updateRoom('killing people')
+// chatroom.updateUsername('binladin')
+// chatroom.getChats(function(data) {
+//     console.log(data)
+// })
+// chatroom.addChat('allahu akbar')
+// },4000)
