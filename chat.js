@@ -47,17 +47,8 @@ class Chatroom {
     // 4
     updateRoom(newRoom) {
         this.room = newRoom
-        console.log('room updated')
         if(this.unsub)
         this.unsub()
     }
 }
 
-// setTimeout(() => {
-// chatroom.updateRoom('killing people')
-// chatroom.updateUsername('binladin')
-// chatroom.getChats(function(data) {
-//     console.log(data)
-// })
-// chatroom.addChat('allahu akbar')
-// },4000)

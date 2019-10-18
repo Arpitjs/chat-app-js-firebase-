@@ -13,4 +13,7 @@ class ChatUI {
         <div class="time">${formatted}</div></li>`
         this.list.innerHTML += html
     }
+    clear() {
+        this.list.innerHTML = ''
+    }
 }   
