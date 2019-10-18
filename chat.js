@@ -8,6 +8,7 @@ class Chatroom {
         this.room = room
         this.username = username
         this.database = db.collection('chats')
+        this.unsub
     }
     // 1
     async addChat(message) {
@@ -25,25 +26,45 @@ class Chatroom {
     }
     // 2
     getChats(callback) {
-        this.database
-        .where('room', '==', this.room)
-        .orderBy('created_at')
-        .onSnapshot(snapshot => {
-            snapshot.docChanges().forEach(change => {
-                // console.log(snapshot.docChanges())
-                if (change.type === 'added') {
-                    //callback later will the data. return also works in this case.
-                    callback(change.doc.data())
-                }
+        this.unsub = this.database
+            .where('room', '==', this.room)
+            .orderBy('created_at')
+            .onSnapshot(snapshot => {
+                snapshot.docChanges().forEach(change => {
+                    // console.log(snapshot.docChanges())
+                    if (change.type === 'added') {
+                        //callback later will the data. return also works in this case.
+                        callback(change.doc.data())
+                    }
+                })
             })
-        })
+    }
+    // 3
+    updateUsername(newName) {
+        this.username = newName
+    }
+    // 4
+    updateRoom(newRoom) {
+        this.room = newRoom
+        console.log('room updated')
+        if(this.unsub)
+        this.unsub()
     }
 }
 
-let chatroom = new Chatroom('gaming', 'ram')
+let chatroom = new Chatroom('general', 'yoshi')
 // chatroom.addChat('hi')
 // .then(() => console.log('chat added'))
 
 chatroom.getChats(function (data) {
     console.log(data)
 })
+
+setTimeout(() => {
+chatroom.updateRoom('killing people')
+chatroom.updateUsername('binladin')
+chatroom.getChats(function(data) {
+    console.log(data)
+})
+chatroom.addChat('allahu akbar')
+},4000)
