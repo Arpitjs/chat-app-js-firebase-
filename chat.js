@@ -23,7 +23,7 @@ class Chatroom {
         //save chat to db
         const response = await this.database.add(chat)
         return response
-    }
+}
     // 2
     getChats(callback) {
         this.unsub = this.database
@@ -42,6 +42,7 @@ class Chatroom {
     // 3
     updateUsername(newName) {
         this.username = newName
+        localStorage.setItem('username', newName)
     }
     // 4
     updateRoom(newRoom) {

@@ -8,7 +8,7 @@ class ChatUI {
     render(data) {
         let now = new Date().getTime()
         let dbDate = data.created_at.toMillis()
-        let formatted = dateFns.distanceInWords(now, dbDate, { addSuffix: true })
+        let formatted = dateFns.distanceInWords(now, dbDate, { addSuffix: true } )
         let html = `<li class="list-group-item"><span class="username">${data.username} : </span><span class="message">${data.message}</span> 
         <div class="time">${formatted}</div></li>`
         this.list.innerHTML += html
